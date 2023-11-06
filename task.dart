@@ -1,17 +1,52 @@
 void main(){
-  //problem9_1
-//   List<int> res = problem9_1(10);
-//   for(int n in res){
-//     print(n);
-//   }
-  
-  //problem9_2
-//   print(problem9_2(10));
-  
-  //problem10
-  problem11("Hello_10");
-}
+  //problem_1
+  problem1();
 
+   //problem_2
+  problem2(5);
+
+  //problem_3
+  problem3();
+
+  //problem_4
+  List<int> a = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89];
+  problem4(a);
+
+  //problem_5
+  problem5(10);
+
+  //problem_6
+  List<int> a = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89];
+  List<int> b = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 89];
+  problem6(a,b);
+
+  //problem_7
+  problem7(17);
+
+  //problem_8
+  List<int> a = [1, 1, 2, 3, 5, 8, 3, 21, 34, 55, 8];
+  print(problem8(a));
+
+  //problem_9.1
+  List<int> res = problem9_1(10);
+  for(int n in res){
+    print(n);
+  }
+  
+  //problem_9.2
+  print(fibonacci(7));
+
+  //problem_10
+  print(fibonacci10(7));
+
+  //problem_11
+  problem11("Hello_10");
+
+  //problem_12
+  int row=3;
+  int col=3;
+  problem12(row, col);
+}
 
 class Person {
   String name;
@@ -40,7 +75,7 @@ void problem3(){
         }else{
           print("ODD");
         }
-  }
+    }
 }
 
 void problem4(List<int> myList){
@@ -77,8 +112,7 @@ void problem6(List<int> a, List<int> b){
   print("Matches int between a and b lists");
   for(int number in c){
     print(" ${number}");
-  }
-  
+  } 
 }
 
 void problem7(int n){
@@ -124,11 +158,26 @@ List<int> problem9_1(int k){
   return fiboList;
 }
 
-int problem9_2(int k){
-  if(k<=1){
-    return k;
+int fibonacci(int n) {
+  if (n <= 1) {
+    return n;
+  } else {
+    return fibonacci(n - 1) + fibonacci(n - 2);
   }
-  return problem9_2(k-1)+problem9_2(k-2);
+}
+
+int fibonacci10(int n) {
+  if (memo.containsKey(n)) {
+    return memo[n];
+  }
+  int result;
+  if (n <= 1) {
+    result = n;
+  } else {
+    result = fibonacci10(n - 1) + fibonacci10(n - 2);
+  }
+  memo[n] = result;
+  return result;
 }
 
 void problem11(String str){
@@ -141,11 +190,24 @@ void problem11(String str){
   }
 }
 
-
-
-
-
-
-
-
-
+void problem12(int row, int col){
+  row+=(row+1);
+  col+=(col+1);
+  List<List<String>> matrix = List.generate(row, (r) => List<String>.filled(col, ''), growable: false);
+  for(int i = 0; i<row; i++){
+    for(int j=0; j<col; j++){
+      if(i%2==0){
+        if(j%2!=0){
+          matrix[i][j]="_";
+        }
+      }else{
+        if(j%2==0){
+          matrix[i][j]="|";
+        }
+      }
+    }
+  }
+  for(List temp in matrix){
+    print(temp.toString());
+  }
+}
